@@ -1,0 +1,38 @@
+mat-card {
+    margin: 2%;
+    text-align: left;
+  }
+  .mat-mdc-form-field {
+    width: 98%;
+    margin: 1%;
+  }
+  .mat-50 {
+    width: 58%;
+    margin: 1%;
+  }
+  button {
+    margin: 2% 4% 4% 3%;
+  }
+.content{
+    display: flex;
+    flex: 1 1;
+    padding-left: 50px;
+}
+
+.profile{
+    padding-left: 50px;
+}
+.info{
+    margin-left: 50px;
+    padding-left: 50px;
+}
+.agree{
+    background-color: #00ff00;
+    color: #fff;
+    margin-left: 200px;
+    display: flex;
+    justify-content: end;
+}
+span{
+  color: rgb(46, 211, 211);
+}
