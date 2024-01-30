@@ -11,36 +11,24 @@ export class RestApiService {
   index!: Register;
   constructor(private http: HttpClient) {}
   private apiUrl = 'http://localhost:3000';
+  private url = 'http://localhost:3000/profiles';
 
   GetAllProfile() {
     return this.http.get<Register[]>('http://localhost:3000/profiles');
   }
-  
+
   getProfile() {
     return this.http.get<Register[]>('http://localhost:3000/profiles').pipe(
       map((profiles: string | any[]) => {
         const lastProfile = profiles[profiles.length - 1];
-        // const Img:string = lastProfile.profileImg;
-        return {  lastProfile }
-        
-        // return { Img };
+        return { lastProfile };
       })
     );
   }
 
-
-  // getProfileImg(): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/profiles`).pipe(
-  //     map((profiles: string | any[]) => {
-  //       const lastProfile = profiles[profiles.length - 1];
-  //       if (lastProfile && lastProfile.profileImage) {
-  //         lastProfile.profileImage = `${this.apiUrl}/profiles/${lastProfile.profileImage}`;
-  //       }
-  //       return { lastProfile };
-  //     })
-  //   );
-  // }
-  
+  getProfileById(code:any) {
+    return this.http.get('http://localhost:3000/profiles/code');
+  }
 
   private handleError(err: any) {
     let errorMessage: string;
@@ -55,7 +43,9 @@ export class RestApiService {
 
   CreateProfile(data: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Register[]>(`${this.apiUrl}/profiles`, data, { headers });
+    return this.http.post<Register[]>(`${this.apiUrl}/profiles`, data, {
+      headers,
+    });
   }
 
   createProfile(Createprofiles: Register) {
@@ -70,15 +60,26 @@ export class RestApiService {
       );
   }
 
-  updateProfile(product: Register) {
-    const url = `${this.apiUrl}/${product.firstname}`;
+  updateProfile(register: Register) {
+    const url = `${this.apiUrl}/${register.id}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.patch<Register[]>(url, product, { headers }).pipe(
-      tap(() => console.log(' Updated Product: ' + product.firstname)),
-      map(() => product),
+    return this.http.patch<Register[]>(url, register, { headers }).pipe(
+      tap(() => console.log(' Updated Product: ' + register.id)),
+      map(() => register),
       catchError(this.handleError)
     );
   }
+  EditProfile(id: any): Observable<Register> {
+    return this.http.get<Register>(`http://localhost:3000/profiles`);
+  }
+
+  RemoveProfile(id: any) {
+    return this.http.delete<Register>(`http://localhost:3000/profiles/${id}`);
+  }
+  UpdateProfile(id: any, profileData: any) {
+    return this.http.post<Register>(this.url + '/' + id, profileData);
+  }
+
   getProfilePic() {
     return this.http.get<Register[]>('http://localhost:3000/profiles').pipe(
       map((profiles: Register[]) => {
@@ -89,6 +90,7 @@ export class RestApiService {
   }
   private initializeProduct(): Register {
     return {
+      id: 0,
       profileImg: '',
       firstname: '',
       lastname: '',

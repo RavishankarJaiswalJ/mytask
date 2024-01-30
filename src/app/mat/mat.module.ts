@@ -16,6 +16,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 
+
+
 const matarial =[MatButtonModule,
   MatDividerModule,
   MatIconModule,
@@ -36,7 +38,9 @@ const matarial =[MatButtonModule,
   MatCheckboxModule,
   CommonModule,
   MatMenuModule,
-  MatTableModule
+  MatTableModule,
+  
+  
   
   
 ]

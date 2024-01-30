@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { HttpClientModule } from '@angular/common/http';
+import { RestApiService } from './service/rest-api.service';
 
 @NgModule({
     declarations: [
@@ -21,9 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
         FooterComponent,
         HomeComponent,
         RegisterComponent,
-        ProfileComponent
+        ProfileComponent,
+        
     ],
-    providers: [],
+    providers: [RestApiService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

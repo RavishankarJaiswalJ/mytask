@@ -1,4 +1,6 @@
 export interface Register {
+  
+  id: number;
   profileImg:string;
     firstname: string;
     lastname:string;

@@ -12,7 +12,7 @@
               <div class="avatar-edit">
                 
                 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"
-                  #fileInput (change)="uploadFile($event)" />
+                  #fileInput   sizes="(max-width: 768px)" (change)="uploadFile($event)" />
               </div>
               <div class="avatar-preview">
                 <div id="imagePreview"
@@ -102,7 +102,7 @@
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
     </mat-chip-option>
-    <input placeholder="Add a tag" (keydown.enter)="addTag($event)" name="tag"
+    <input placeholder="Add a tag" (keydown.None)="addTag($event)" name="tag"
       formControlName="tag" class="form-control" />
 
     <span class="example-list-section">
